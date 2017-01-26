@@ -22,9 +22,9 @@ class RegexGenerator(object):
 
     def build_phones_regex(self, phone_list):
 
+        print("Individual RegEx:")
         if len(phone_list) == 1:
-            regex = self.build_phone_regex(phone_list[0])
-            #self.__print_regex(regex)
+            regex = self._build_phone_regex(phone_list[0])
             return regex
 
         regex = "("
@@ -33,12 +33,12 @@ class RegexGenerator(object):
         for phone in phone_list:
             if first:
                 regex += "("
-                regex += self.build_phone_regex(phone)
+                regex += self._build_phone_regex(phone)
                 regex += ")"
                 first = False
             else:
                 regex += "|("
-                regex += self.build_phone_regex(phone)
+                regex += self._build_phone_regex(phone)
                 regex += ")"
 
         regex += ")"
@@ -47,10 +47,9 @@ class RegexGenerator(object):
         print("END")
         return regex
 
-    def build_phone_regex(self, phone):
+    def _build_phone_regex(self, phone):
 
         regex = ""
-
         splitted_phone = [int(char) for char in str(phone)]
 
         first = True

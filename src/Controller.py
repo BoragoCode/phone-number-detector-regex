@@ -1,15 +1,18 @@
 #!/usr/bin/python
 
 import sys
-from application.RegexGenerator import RegexGenerator as regex_generator
+from application.RegexGenerator import RegexGenerator
 
+INFORMATION_MESSAGE = "You must specify a numbers list comma separated, like: 123456,456789,456789"
+if len(sys.argv) < 2:
+    raise ValueError(INFORMATION_MESSAGE)
 
-if (len(sys.argv) < 2):
-    raise ValueError("You must specify a numbers list comma separated, like: 123456,456789,456789")
+regex_generator = RegexGenerator()
 
-phones_list = list(map(int, str(sys.argv[1]).split(',')))
+try:
+    phones_list = list(map(int, str(sys.argv[1]).split(',')))
+except ValueError:
+    raise ValueError(INFORMATION_MESSAGE)
 
-for phone in phones_list:
-    regex = regex_generator.build_phone_regex(phone)
-    print(repr(regex))
+regex = regex_generator.build_phones_regex(phones_list)
 
