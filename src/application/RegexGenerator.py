@@ -2,9 +2,6 @@
 
 class RegexGenerator(object):
 
-    def __init__(self):
-        pass
-
     NUMBER_DICTIONARY = {
         0: "(0|cero)",
         1: "(1|uno)",
